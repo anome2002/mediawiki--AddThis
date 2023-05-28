@@ -59,7 +59,7 @@ public static function AddThisHeader(&$article, &$outputDone, &$pcache) {
               + \'<a class="a2a_button_pinterest"></a>\'
               + \'<a class="a2a_button_reddit"></a>\'
               + \'<a class="a2a_button_tumblr"></a>\'
-              + \'<a class="a2a_button_instagram"></a>\'
+              + \'<a class="a2a_button_whatsapp"></a>\'
               + \'<a class="a2a_dd" href="https://www.addtoany.com/share"></a>\'
               + \'</div>\';
 
