@@ -67,7 +67,7 @@ public static function AddThisHeader(&$article, &$outputDone, &$pcache) {
 
             var url = window.location.href;
 
-            var socialSharingHTML = \'<div class="a2a_kit a2a_kit_size_32 a2a_default_style" data-a2a-url="\' + url + \'" data-a2a-title="Check out this awesome website!">\'
+            var socialSharingHTML = \'<div class="a2a_kit a2a_kit_size_21 a2a_default_style" data-a2a-url="\' + url + \'" data-a2a-title="Check out this awesome website!">\'
 
               + \'<a class="a2a_button_facebook"></a>\'
 
