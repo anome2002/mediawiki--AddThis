@@ -1,10 +1,11 @@
+
 <?php
 
 use MediaWiki\MediaWikiServices;
 
 /**
 
- * Class file for the AddThis extension
+ * Class file for the AddThisToAny extension
 
  *
 
@@ -16,7 +17,9 @@ use MediaWiki\MediaWikiServices;
 
 class AddThis {
 
-	/**	 * Function for article header toolbar
+	/**
+
+	 * Function for article header toolbar
 
 	 *
 
@@ -54,124 +57,103 @@ public static function AddThisHeader(&$article, &$outputDone, &$pcache) {
 
     $share = wfMessage('addthis')->escaped();
 
-  // Output the new social sharing widget
+    # Output the new social sharing widget
 
-$wgOut->addHTML('
+    $wgOut->addHTML('<div id="social-sharing-widget"></div>
 
-<div id="social-sharing-widget"></div>
+        <script>
 
-<script>
+          function generateSocialSharingWidget() {
 
-function generateSocialSharingWidget() {
+            var url = window.location.href;
 
-  var url = window.location.href;
+            var socialSharingHTML = \'<div class="a2a_kit a2a_kit_size_21 a2a_default_style" data-a2a-url="\' + url + \'" data-a2a-title="Check out this awesome website!">\'
 
-  var socialSharingHTML = \'<div class="a2a_kit a2a_kit_size_21 a2a_default_style" data-a2a-url="\' + url + \'" data-a2a-title="Check out this awesome website!">\'
+              + \'<a class="a2a_button_facebook"></a>\'
 
-    + \'<a class="a2a_button_facebook"></a>\'
+              + \'<a class="a2a_button_twitter"></a>\'
 
-    + \'<a class="a2a_button_twitter"></a>\'
+              + \'<a class="a2a_button_linkedin"></a>\'
 
-    + \'<a class="a2a_button_linkedin"></a>\'
+              + \'<a class="a2a_button_email"></a>\'
 
-    + \'<a class="a2a_button_email"></a>\'
+              + \'<a class="a2a_button_pinterest"></a>\'
 
-    + \'<a class="a2a_button_pinterest"></a>\'
+              + \'<a class="a2a_button_reddit"></a>\'
 
-    + \'<a class="a2a_button_reddit"></a>\'
+              + \'<a class="a2a_button_tumblr"></a>\'
 
-    + \'<a class="a2a_button_tumblr"></a>\'
+              + \'<a class="a2a_button_whatsapp"></a>\'
 
-    + \'<a class="a2a_button_whatsapp"></a>\'
+              + \'<a class="a2a_dd" href="https://www.addtoany.com/share"></a>\'
 
-    + \'<a class="a2a_dd" href="https://www.addtoany.com/share"></a>\'
+              + \'</div>\';
 
-    + \'</div>\';
+            var socialSharingStyle = \'<style>\'
 
-  var socialSharingStyle = \'<style>\'
++ \'#social-sharing-widget { float: right; top: 10px; right: 10px; }\'
 
-    + \'#social-sharing-widget { float: right; top: 10px; right: 10px; position: relative; }\'
+              + \'.a2a_kit {\'
 
-    + \'.a2a_kit {\'
+              + \'border: 2px solid #999;\'
 
-    + \'border: 2px solid #999;\'
+              + \'border-radius: 3px;\'
 
-    + \'border-radius: 3px;\'
+              + \'padding: 5px;\'
 
-    + \'padding: 5px;\'
+              + \'display: inline-block;\'
 
-    + \'display: inline-block;\'
+              + \'background-color: #f6f6f6;\'
 
-    + \'background-color: #f6f6f6;\'
+              + \'box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);\'
 
-    + \'box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);\'
+              + \'}\'
 
-    + \'}\'
+              + \'.a2a_button {\'
 
-    + \'.a2a_button {\'
+              + \'margin-right: 5px;\'
 
-    + \'margin-right: 5px;\'
+              + \'width: 20px;\'
 
-    + \'width: 20px;\'
+              + \'height: 20px;\'
 
-    + \'height: 20px;\'
+              + \'}\'
 
-    + \'}\'
+              + \'.a2a_kit_size_32 {\'
 
-    + \'.a2a_kit_size_32 {\'
+              + \'width: auto;\'
 
-    + \'width: auto;\'
+              + \'}\'
 
-    + \'}\'
+              + \'</style>\';
 
-    + \'</style>\';
+            var wrapper = document.createElement(\'div\');
 
-  var wrapper = document.createElement(\'div\');
+            wrapper.innerHTML = socialSharingStyle + socialSharingHTML;
 
-  wrapper.innerHTML = socialSharingStyle + socialSharingHTML;
+            document.getElementById(\'social-sharing-widget\').appendChild(wrapper);
 
-  var container = document.getElementById(\'social-sharing-widget\');
+            var script = document.createElement(\'script\');
 
-  if (container) {
+            script.async = true;
 
-    container.appendChild(wrapper);
+            script.src = \'https://static.addtoany.com/menu/page.js\';
 
-    var script = document.createElement(\'script\');
+            document.getElementById(\'social-sharing-widget\').appendChild(script);
 
-    script.async = true;
+          }
 
-    script.onload = function() {
+          generateSocialSharingWidget();
 
-      addtoany.init();
+        </script>');
 
-    };
-
-    script.src = \'https://static.addtoany.com/menu/page.js\';
-
-    container.appendChild(script);
-
-  }
+    return true;
 
 }
 
-if (document.readyState === "complete") {
+	
 
-  generateSocialSharingWidget();
-
-} else {
-
-  document.addEventListener(\'DOMContentLoaded\', generateSocialSharingWidget);
+	
 
 }
-
-</script>
-
-');
-
-return true;
-
-}
-
-}
-
 
